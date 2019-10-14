@@ -114,6 +114,7 @@ public class P2Helper {
                     .snapshot(resolvedArtifact.isSnapshot())
                     .sourceName(sourceName)
                     .sourceSymbolicName(sourceSymbolicName)
+                    .extraheaders(p2Artifact.getExtraheaders())
                     .proposedVersion(proposedVersion);
 
             if (resolvedArtifact.isRoot()) {

@@ -20,6 +20,9 @@ package org.reficio.p2.bundler;
 
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,10 +42,11 @@ public final class ArtifactBundlerInstructions {
     private final String proposedVersion;
 
     private final Map<String, String> instructions;
+    private final Map<String, String> extraheaders;
     private final Boolean snapshot;
 
     private ArtifactBundlerInstructions(String name, String symbolicName, String symbolicNameWithOptions, String version, String sourceName,
-                                        String sourceSymbolicName, String proposedVersion, Map<String, String> instructions,
+                                        String sourceSymbolicName, String proposedVersion, Map<String, String> instructions, Map<String, String> extraheaders,
                                         Boolean snapshot) {
         this.name = name;
         this.symbolicName = symbolicName;
@@ -52,6 +56,7 @@ public final class ArtifactBundlerInstructions {
         this.sourceSymbolicName = sourceSymbolicName;
         this.proposedVersion = proposedVersion;
         this.instructions = instructions;
+        this.extraheaders = extraheaders;
         this.snapshot = snapshot;
     }
 
@@ -68,6 +73,7 @@ public final class ArtifactBundlerInstructions {
         private String sourceSymbolicName;
         private String proposedVersion;
         private Map<String, String> instructions = new HashMap<String, String>();
+        private Map<String, String> extraheaders = new HashMap<String, String>();
         private Boolean snapshot;
 
         public Builder name(String name) {
@@ -109,6 +115,11 @@ public final class ArtifactBundlerInstructions {
             this.instructions = new HashMap<String, String>(instructions);
             return this;
         }
+        
+        public  Builder extraheaders(Map<String,String> extraheaders) {
+            this.extraheaders = new HashMap<String, String>(extraheaders);
+            return this;
+        }
 
         public Builder snapshot(Boolean snapshot) {
             this.snapshot = snapshot;
@@ -117,7 +128,7 @@ public final class ArtifactBundlerInstructions {
 
         public ArtifactBundlerInstructions build() {
             return new ArtifactBundlerInstructions(name, symbolicName, symbolicNameWithOptions,
-                    version, sourceName, sourceSymbolicName, proposedVersion, instructions, snapshot);
+                    version, sourceName, sourceSymbolicName, proposedVersion, instructions, extraheaders, snapshot);
         }
     }
 
@@ -156,4 +167,9 @@ public final class ArtifactBundlerInstructions {
     public Boolean isSnapshot() {
         return snapshot;
     }
+
+	public Map<String, String> getExtraheaders() {
+		return extraheaders;
+	}
+    
 }

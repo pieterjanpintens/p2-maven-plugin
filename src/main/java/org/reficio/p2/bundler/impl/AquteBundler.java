@@ -126,6 +126,12 @@ public class AquteBundler implements ArtifactBundler {
             // the "SNAPSHOT" string is replaces with the manually generated timestamp
             JarUtils.adjustSnapshotOutputVersion(request.getBinaryInputFile(), request.getBinaryOutputFile(), instructions.getProposedVersion());
         }
+        
+        // add extra headers if specified
+        if(!instructions.getExtraheaders().isEmpty())
+        {
+        	JarUtils.addHeaders(request.getBinaryInputFile(), request.getBinaryOutputFile(), instructions.getExtraheaders());
+        }        
     }
 
     private void doSourceWrap(ArtifactBundlerRequest request, ArtifactBundlerInstructions instructions) throws Exception {

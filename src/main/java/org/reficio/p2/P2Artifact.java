@@ -20,6 +20,7 @@ package org.reficio.p2;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -69,6 +70,11 @@ public class P2Artifact {
      * The BND instructions for the bundle.
      */
     private Map<String, String> instructions = new LinkedHashMap<String, String>();
+    
+    /**
+     * The extra manifest headers for the bundle.
+     */
+    private Map<String, String> extraheaders = new LinkedHashMap<String, String>();
 
     /**
      * The BND instructions for the bundle.
@@ -176,4 +182,13 @@ public class P2Artifact {
             }
         }
     }
+
+	public Map<String,String> getExtraheaders() {
+		return extraheaders;
+	}
+
+	public void setExtraheaders(Map<String,String> extraheaders) {
+		this.extraheaders = extraheaders;
+	}
+
 }

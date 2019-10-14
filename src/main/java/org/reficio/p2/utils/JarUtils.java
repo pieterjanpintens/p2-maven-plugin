@@ -35,6 +35,9 @@ import org.w3c.dom.NodeList;
 import java.io.*;
 import java.util.Comparator;
 import java.util.Enumeration;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
@@ -262,5 +265,25 @@ public class JarUtils {
 			
 
 		}
+	}
+
+	public static void addHeaders(File inputFile, File outputFile, Map<String,String> extraheaders) {
+        Jar jar = null;
+        try {
+            jar = new Jar(inputFile);
+            Manifest manifest = jar.getManifest();
+            Attributes attributes = manifest.getMainAttributes();
+            for(Entry<String,String> header : extraheaders.entrySet())
+            {
+            	 attributes.putValue(header.getKey(), header.getValue());
+            }           
+            jar.write(outputFile);
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot open jar " + outputFile, e);
+        } finally {
+            if (jar != null) {
+                jar.close();
+            }
+        }
 	}
 }

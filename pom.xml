@@ -162,7 +162,7 @@
         <dependency>
             <groupId>biz.aQute.bnd</groupId>
             <artifactId>biz.aQute.bnd</artifactId>
-            <version>3.3.0</version>
+            <version>3.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -683,20 +683,5 @@
         </profile>
     </profiles>
 
-    <repositories>
-        <!-- required to get the reficio-skin -->
-        <repository>
-            <id>reficio</id>
-            <url>http://repo.reficio.org/maven/</url>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <repository>
-            <id>reficio</id>
-            <name>Reficio Maven Repository</name>
-            <url>scp://${reficio.server}/var/www/repo/maven</url>
-        </repository>
-    </distributionManagement>
 
 </project>
